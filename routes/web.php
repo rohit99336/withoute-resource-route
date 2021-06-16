@@ -23,12 +23,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::group(['middleware' => ['auth']], function () {
     Route::get('real-admin', [UsersController::class, 'users']);
     Route::get('delUser/{id}', [UsersController::class, 'userDelete'])->name('userDel');
     Route::get('detailUser/{id}', [UsersController::class, 'detailUser']);
     Route::get('editUser/{id}', [UsersController::class, 'editUser']);
     Route::post('updateUser', [UsersController::class, 'updateUser'])->name('updateUser');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
